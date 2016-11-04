@@ -1,0 +1,4 @@
+{
+    "nv.ua": ".article > .body",
+    "pravda.com.ua": ".post_news__text"
+}

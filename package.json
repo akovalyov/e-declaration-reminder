@@ -1,0 +1,27 @@
+{
+  "title": "E-declaration reminder",
+  "name": "declaration-reminder",
+  "version": "0.0.1-dev",
+  "description": "Напоминатор сумм деклараций",
+  "main": "index.js",
+  "author": "Andrew Kovalyov <andrew.kovalyoff@gmail.com>",
+  "engines": {
+    "firefox": ">=38.0a1",
+    "fennec": ">=38.0a1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "e-declaration"
+  ],
+  "devDependencies": {
+    "gulp": "3.8.11",
+    "gulp-inline-css": "^3.1.0",
+    "gulp-plumber": "1.0.0",
+    "gulp-release": "^1.1.0",
+    "gulp-rename": "1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-sass": "1.3.3",
+    "gulp-uglify": "1.2.0",
+    "jpm": "^1.2.2"
+  }
+}
