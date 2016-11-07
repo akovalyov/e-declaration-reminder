@@ -5,3 +5,4 @@
 !/output/.gitkeep
 /node_modules
 /debug
+/.env.json

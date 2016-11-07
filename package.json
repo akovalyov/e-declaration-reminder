@@ -1,10 +1,10 @@
 {
   "title": "E-declaration reminder",
   "name": "declaration-reminder",
-  "version": "0.0.1-dev",
+  "version": "0.0.1",
   "description": "Напоминатор сумм деклараций",
-  "main": "index.js",
   "author": "Andrew Kovalyov <andrew.kovalyoff@gmail.com>",
+  "url": "",
   "engines": {
     "firefox": ">=38.0a1",
     "fennec": ">=38.0a1"

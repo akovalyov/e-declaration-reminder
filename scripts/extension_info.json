@@ -1,0 +1,10 @@
+{
+    "content_scripts": [
+        "content.js"
+    ],
+    "description": "{{ description }}",
+    "creator": "Andrew Kovalyov <andrew.kovalyoff@gmail.com>",
+    "homepage_url": " {{ url }}",
+    "version": "{{ version }}",
+    "name": "{{ name }}"
+}

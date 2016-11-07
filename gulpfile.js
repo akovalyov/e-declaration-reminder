@@ -5,8 +5,12 @@ var gulp = require('gulp'),
     spawn = require('child_process').spawn,
     replace = require('gulp-replace'),
     fs = require('fs'),
-    os = require("os"),
-    release = require('gulp-release');
+    os = require('os'),
+    release = require('gulp-release'),
+    xpiSigner = require('jpm/lib/sign').sign;
+
+
+var json = JSON.parse(fs.readFileSync('./package.json'));
 
 release.register(gulp, {
     packages: ['package.json'],
@@ -45,6 +49,11 @@ gulp.task('embed:data', function(){
         .pipe(replace('{{ db }}', JSON.stringify(db)))
         .pipe(replace('{{ regex }}', regex))
         .pipe(replace('{{ websites }}', JSON.stringify(allowedWebsites)))
+        .pipe(replace('{{ description }}', json.description))
+        .pipe(replace('{{ url }}', json.url))
+        .pipe(replace('{{ version }}', json.version))
+        .pipe(replace('{{ name }}', json.name))
+
         .pipe(gulp.dest('src/common/'))
 });
 gulp.task('scripts', ['embed:data'], function () {
@@ -71,11 +80,23 @@ gulp.task('copy:templates', function () {
 gulp.task('build', ['embed:data', 'scripts', 'copy:templates'], function (cb) {
     var cmd = spawn('python2.7', ['kangoext/kango.py', 'build', '.'], {stdio: 'inherit'});
     cmd.on('close', function (code) {
-        console.log('my-task exited with code ' + code);
+        console.log('embed:data exited with code ' + code);
         cb(code);
     });
 });
 
+gulp.task('sign', ['build'], function (cb) {
+    var version = json.version;
+    var name = json.name;
+
+    var env = JSON.parse(fs.readFileSync('./.env.json'));
+    xpiSigner({
+        'apiKey': env.JWT_ISSUER,
+        'apiSecret': env.JWT_TOKEN,
+        'xpi': 'output/'+name+'_'+version+'.xpi'
+    })
+
+});
 gulp.task('default', function () {
     gulp.watch("scripts/**/*.js", ['scripts']);
     gulp.watch("templates/*.html", ['embed:template']);
