@@ -52,7 +52,7 @@ gulp.task('embed:data', function(){
         .pipe(replace('{{ description }}', json.description))
         .pipe(replace('{{ url }}', json.url))
         .pipe(replace('{{ version }}', json.version))
-        .pipe(replace('{{ name }}', json.name))
+        .pipe(replace('{{ name }}', json.title))
 
         .pipe(gulp.dest('src/common/'))
 });
@@ -87,7 +87,7 @@ gulp.task('build', ['embed:data', 'scripts', 'copy:templates'], function (cb) {
 
 gulp.task('sign', ['build'], function (cb) {
     var version = json.version;
-    var name = json.name;
+    var name = json.title.toLowerCase().replace(' ', '').replace('-', '');
 
     var env = JSON.parse(fs.readFileSync('./.env.json'));
     xpiSigner({

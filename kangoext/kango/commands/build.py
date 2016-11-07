@@ -195,9 +195,9 @@ class BuildCommand(Command):
         import kango.builders.firefox
         import kango.builders.safari
         self._builder_cls = [
-            kango.builders.chrome.ExtensionBuilder,
+            #kango.builders.chrome.ExtensionBuilder,
             kango.builders.firefox.ExtensionBuilder,
-            kango.builders.safari.ExtensionBuilder
+            #kango.builders.safari.ExtensionBuilder
         ]
         try:
             import kango.builders.internet_explorer
